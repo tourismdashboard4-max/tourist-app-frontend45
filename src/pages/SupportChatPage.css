@@ -1,0 +1,269 @@
+/* client/src/pages/SupportChatPage.css */
+
+/* ============================================
+   صفحة الدعم الفني - تصميم متوافق مع التطبيق
+   ============================================ */
+
+/* تخصيص شريط التمرير */
+.support-chat-container::-webkit-scrollbar,
+.messages-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.support-chat-container::-webkit-scrollbar-track,
+.messages-area::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.support-chat-container::-webkit-scrollbar-thumb,
+.messages-area::-webkit-scrollbar-thumb {
+  background: rgba(20, 184, 166, 0.5);
+  border-radius: 10px;
+}
+
+.support-chat-container::-webkit-scrollbar-thumb:hover,
+.messages-area::-webkit-scrollbar-thumb:hover {
+  background: rgba(20, 184, 166, 0.8);
+}
+
+/* تحسين الرسائل المتحركة */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.message-wrapper {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* تحسينات للرسائل */
+.message-bubble {
+  transition: all 0.2s ease;
+}
+
+.message-bubble:hover {
+  transform: scale(1.01);
+}
+
+/* تخصيص حقل الإدخال */
+.message-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.5);
+  border-color: #14b89a;
+}
+
+/* تخصيص الزر */
+.send-btn {
+  transition: all 0.2s ease;
+}
+
+.send-btn:active {
+  transform: scale(0.95);
+}
+
+/* للحالة الفارغة */
+.empty-state svg {
+  animation: softPulse 2s infinite;
+}
+
+@keyframes softPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 768px) {
+  .message-content {
+    max-width: 85%;
+  }
+  
+  .message-bubble {
+    padding: 10px 14px;
+  }
+  
+  .message-bubble p {
+    font-size: 13px;
+  }
+  
+  .message-sender {
+    font-size: 10px;
+  }
+  
+  .message-time {
+    font-size: 9px;
+  }
+  
+  .message-input {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  
+  .send-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .send-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .message-content {
+    max-width: 90%;
+  }
+  
+  .message-avatar {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+  
+  .chat-header {
+    padding: 8px 12px;
+  }
+  
+  .header-icon {
+    font-size: 20px;
+  }
+  
+  .header-title h2 {
+    font-size: 16px;
+  }
+  
+  .online-status {
+    font-size: 10px;
+  }
+  
+  .back-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .messages-area {
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .input-area {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+}
+
+/* تحسينات للوضع الداكن (إذا كان مدعوماً) */
+@media (prefers-color-scheme: dark) {
+  .support-chat-container {
+    background: #111827;
+  }
+  
+  .messages-area {
+    background: #111827;
+  }
+  
+  .empty-state h3 {
+    color: #9ca3af;
+  }
+  
+  .empty-state p {
+    color: #6b7280;
+  }
+  
+  .message-sender {
+    color: #9ca3af;
+  }
+  
+  .message-time {
+    color: #6b7280;
+  }
+  
+  .user-message .message-time {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* منع التحديد العشوائي للنص */
+.message-bubble p {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* تحسين تجربة اللمس للأجهزة المحمولة */
+.send-btn,
+.back-btn {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* تأثيرات إضافية */
+.message-bubble.support-message {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+}
+
+.message-bubble.user-message {
+  background: linear-gradient(135deg, #14b89a, #0e9f84);
+}
+
+/* تخصيص حالة الكتابة */
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  animation: typingBounce 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
